@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <title>H&L</title>
+    <style>
+        @font-face { font-family: LovelyHome; src: url('LovelyHome.ttf'); } 
+        @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+HR+Lijeva:wght@100..400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="parent">
+        <audio autoplay loop id="playAudio">
+            <source src="Ed Sheeran - Perfect (Lyrics).mp3" type="audio/mpeg">
+        </audio>
+        <div class="falling-leaves"></div>
+        <div class="swiper mySwiper blur">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="intro">
+                    <div class="title">
+                        Hisham<br>
+                        &<br>
+                        Leya
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <script>
+      var swiper = new Swiper(".mySwiper", {});
+    </script>    <script src="script.js"></script>
+    <script>
+        // Get the current URL
+        const url = new URL(window.location.href);
+
+        // Use URLSearchParams to work with the query string parameters
+        const params = new URLSearchParams(url.search);
+
+        // Get the value of the 'attendees' parameter
+        const attendees = params.get('att'); // Example: 3
+        const fn = params.get('fn');
+        const ln = params.get('ln');
+
+        console.log('attendees',attendees);
+        // Get the select element and hidden input element
+        const attendeesSelect = document.getElementById('00Nd2000000VuXN');
+        const fninput = document.getElementById('first_name');
+        const lninput = document.getElementById('last_name');
+
+        // Set the value of the select element and the hidden input element
+        if (attendees) {
+            for (let option of attendeesSelect.options) {
+                if (option.value === attendees) {
+                    option.selected = true;
+                    console.log('option',option);
+                    console.log('option.value',option.value);
+                    console.log('option.selected',option.selected);
+                    break;
+                }
+            }
+            document.getElementById('attnum').innerHTML = `<p>Number of persons: ${attendees}</p>`;
+        }
+        if(fn && ln) {
+            if(fninput) {
+                fninput.value = fn;
+            }
+            if(lninput) {
+                lninput.value = ln;
+            }
+            if(attendees > 2){
+            document.getElementById('attname').innerHTML = `<p>Dear ${fn} ${ln} and Family</p>`;
+            }else if(attendees == 2) {
+                document.getElementById('attname').innerHTML = `<p>Dear Mr & Mrs ${ln}</p>`;
+            }
+            else if(attendees == 1) {
+                document.getElementById('attname').innerHTML = `<p>Dear ${fn} ${ln}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
